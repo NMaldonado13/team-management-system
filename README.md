@@ -4,7 +4,7 @@ An in progress full-stack web application built using Python and Flask that allo
 
 ## Motivation
 
-I started this project to strengthen my udnerstanding of backend and full-stack development concepts beyond coursework. The focus is on learning how to design scalable web applications with authentication, permissions, database integration, and clean project structure.
+I started this project to strengthen my understanding of backend and full-stack development concepts beyond coursework. The focus is on learning how to design scalable web applications with authentication, permissions, database integration, and clean project structure.
 
 ## Tech used:
 
