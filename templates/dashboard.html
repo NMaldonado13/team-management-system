@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+    <h1>Dashboard</h1>
+    <p>You are logged in as: {{ role }}</p>
+{% endblock %}
+
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <p>You are logged in as a {{ role }}.</p>
+    {% if role == "Coach"%}
+        <h2>Coach Controls</h2>
+        <p>You can edit the roster and manage the team.</p>
+    {% endif %}
+    {% if role == "Player"%}
+        <h2>Player View</h2>
+        <p>You can view team info and stats.</p>
+    {% endif %}
+    <form action = "/logout">
+        <button type = "submit">Log out</button>
+    </form>
+</body>
+</html>

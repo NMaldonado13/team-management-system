@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Basketball App{% endblock %}</title>
+</head>
+<body>
+
+    <div style = "display: flex;">
+        <!-- Sidebar -->
+        <div style = "width: 200px; padding: 10px; border-right: 1px solid black;">
+            <h3>Menu</h3>
+            <a href = "/dashboard">Dashboard</a><br>
+            <a href = "/announcements">Announcements</a><br>
+            <a href = "/chat">Team Chat</a><br>
+            <a href = "/roster">Roster</a><br>
+            {% if role == "coach" %}
+                <hr>
+                <strong>Coach Tools</strong><br>
+                <a href = "/manage-team">Manage Team</a><br>
+            {% endif %}
+            <hr> 
+            <form action = "/logout">
+                <button type = "submit">Log out</button>
+            </form>
+        </div>
+        <!-- Main Content -->
+        <div style = "padding: 20px;">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>
