@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, render_template, redirect, session
+from flask import Flask, render_template, redirect, session, request
 
 def get_db_connection():
     conn = sqlite3.connect("database.db")
@@ -35,5 +35,42 @@ def logout():
     session.clear()
     return redirect("/")
 
+@app.route("/announcements", methods = ["GET", "POST"]) #load announcements page
+def announcements():
+    role = session.get("role")
+    if role is None:
+        return redirect("/")
+    
+    if request.method == "POST":
+        if role != "Coach":
+            return redirect("/announcements")
+        title = request.form["title"]
+        content = request.form["content"]
+        
+        conn = get_db_connection()
+        username = session.get("username")
+        conn.execute(
+            "INSERT INTO announcements (title, content, author) VALUES (?, ?, ?)",
+            (title, content, username)
+        )
+        conn.commit()
+        conn.close()
+        
+        return redirect("/announcements")
+    
+    conn = get_db_connection()
+    announcements = conn.execute(
+        "SELECT * FROM announcements ORDER BY created_at DESC"
+    ).fetchall()
+    conn.close()
+    
+    return render_template(
+        "announcements.html", 
+        announcements = announcements,
+        role = role
+    )
+    
+    
+        
 if __name__ == "__main__":
     app.run(debug = True)
