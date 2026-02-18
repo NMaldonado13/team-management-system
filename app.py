@@ -35,7 +35,7 @@ def logout():
     session.clear()
     return redirect("/")
 
-@app.route("/announcements", methods = ["GET", "POST"]) #load announcements page
+@app.route("/announcements", methods = ["GET", "POST"]) #load announcements page and able to post
 def announcements():
     role = session.get("role")
     if role is None:
